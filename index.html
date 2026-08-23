@@ -933,6 +933,28 @@
             line-height: 1.6;
         }
 
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid var(--border);
+            object-fit: contain;
+            padding: 5px;
+            flex-shrink: 0;
+        }
+
+        .timeline-header .timeline-date {
+            margin-bottom: 2px;
+        }
+
         /* ===== Skills Section ===== */
         .skills-grid {
             display: grid;
@@ -1606,6 +1628,7 @@
                 <li><a href="#about" class="active" data-i18n="nav-about">关于</a></li>
                 <li><a href="#skills" data-i18n="nav-skills">技能</a></li>
                 <li><a href="#projects" data-i18n="nav-projects">项目</a></li>
+                <li><a href="#hobbies" data-i18n="nav-hobbies">爱好</a></li>
                 <li><a href="#contact" data-i18n="nav-contact">联系</a></li>
             </ul>
             <div class="lang-switcher" id="langSwitcher" title="Switch Language / 切换语言">
@@ -1663,7 +1686,7 @@
                 <div class="about-stats">
                     <div class="stat-card">
                         <div class="stat-number">10+</div>
-                        <div class="stat-label" data-i18n="about-stat1-label">奖项</div>
+                        <div class="stat-label" data-i18n="about-stat1-label">各类综合奖项</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">10+</div>
@@ -1674,8 +1697,8 @@
                         <div class="stat-label" data-i18n="about-stat3-label">志愿服务</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">3x</div>
-                        <div class="stat-label" data-i18n="about-stat4-label">三好学生</div>
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label" data-i18n="about-stat4-label">三好学生及国家级省级奖</div>
                     </div>
                 </div>
             </div>
@@ -1691,8 +1714,13 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
-                        <div class="timeline-date">2024.07 - <span data-i18n="tl-date-now">至今</span></div>
-                        <div class="timeline-title" data-i18n="tl1-title">系统运维工程师（DevOps & AI Infra）</div>
+                        <div class="timeline-header">
+                            <img src="assets/unionpay.png" alt="银联" class="timeline-logo">
+                            <div>
+                                <div class="timeline-date">2024.07 - <span data-i18n="tl-date-now">至今</span></div>
+                                <div class="timeline-title" data-i18n="tl1-title">系统运维工程师（DevOps & AI Infra）</div>
+                            </div>
+                        </div>
                         <div class="timeline-sub" data-i18n="tl1-sub">银联 · 全职 · Shanghai, China</div>
                         <div class="timeline-desc" data-i18n="tl1-desc">负责系统开发（Gin + Django）、AI Infra（VLLM）模型选型与部署调优、AI智能体研发（FastAPI + LangChain + LangGraph + React）</div>
                     </div>
@@ -1700,8 +1728,13 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
-                        <div class="timeline-date">2024.04 - 2024.06</div>
-                        <div class="timeline-title" data-i18n="tl2-title">AI资源工程师（实习）--NLP方向</div>
+                        <div class="timeline-header">
+                            <img src="assets/iflytek.png" alt="科大讯飞" class="timeline-logo">
+                            <div>
+                                <div class="timeline-date">2024.04 - 2024.06</div>
+                                <div class="timeline-title" data-i18n="tl2-title">AI资源工程师（实习）--NLP方向</div>
+                            </div>
+                        </div>
                         <div class="timeline-sub" data-i18n="tl2-sub">科大讯飞 · 实习 · Anhui, China</div>
                         <div class="timeline-desc" data-i18n="tl2-desc">负责NLP模块语料数据预处理（Pandas, NumPy），特征工程及数据可视化报告（Matplotlib, Seaborn）</div>
                     </div>
@@ -1709,10 +1742,15 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
-                        <div class="timeline-date">2020.09 - 2024.06</div>
-                        <div class="timeline-title" data-i18n="tl3-title">信息管理与信息系统 本科</div>
+                        <div class="timeline-header">
+                            <img src="assets/AUFE.png" alt="安徽财经大学" class="timeline-logo">
+                            <div>
+                                <div class="timeline-date">2020.09 - 2024.06</div>
+                                <div class="timeline-title" data-i18n="tl3-title">信息管理与信息系统 本科</div>
+                            </div>
+                        </div>
                         <div class="timeline-sub" data-i18n="tl3-sub">安徽财经大学 · 全日制 · Anhui, China</div>
-                        <div class="timeline-desc" data-i18n="tl3-desc">省校级奖项10余项，奖学金10余次，累计志愿服务216小时，三好学生3次</div>
+                        <div class="timeline-desc" data-i18n="tl3-desc">国家级省级奖项多项，省校级奖项10余项，奖学金10余次，累计志愿服务216小时</div>
                     </div>
                 </div>
             </div>
@@ -1751,7 +1789,7 @@
                 <div class="skill-card">
                     <div class="skill-icon">☁️</div>
                     <h3 data-i18n="skill5-title">云与容器</h3>
-                    <p data-i18n="skill5-desc">Docker · K8s · 腾讯云 · 阿里云</p>
+                    <p data-i18n="skill5-desc">Docker · 腾讯云 · 阿里云</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🤖</div>
@@ -1788,7 +1826,7 @@
                     </div>
                     <div class="project-info">
                         <h3 data-i18n="project1-title">Build a Product Agent</h3>
-                        <p data-i18n="project1-desc">基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，项目约60 stars</p>
+                        <p data-i18n="project1-desc">基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，已超过100+ stars</p>
                         <div class="project-tags">
                             <span class="tag">LangChain</span>
                             <span class="tag">FastAPI</span>
@@ -1835,6 +1873,34 @@
         </div>
     </section>
 
+    <!-- Hobbies Section -->
+    <section id="hobbies">
+        <div class="container">
+            <div class="section-label" data-i18n="hobbies-label">/ 生活</div>
+            <h2 class="section-title" data-i18n="hobbies-title">业余爱好与生活</h2>
+            <p class="section-desc" data-i18n="hobbies-desc">
+                代码之外的我。
+            </p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🏸</div>
+                    <h3 data-i18n="hobby1-title">羽毛球</h3>
+                    <p data-i18n="hobby1-desc">前职业青训球员，出自湖南省省队，主攻男双，2025年入围银联杯决赛</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎬</div>
+                    <h3 data-i18n="hobby2-title">摄影 & Vlog</h3>
+                    <p data-i18n="hobby2-desc">业余摄影师。大学期间拍摄多部微纪录片与微电影，获校级电影节第一名。</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚽</div>
+                    <h3 data-i18n="hobby3-title">足球</h3>
+                    <p data-i18n="hobby3-desc">业余足球运动员，司职右边后卫，大学四年担任院队队长</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -1845,11 +1911,11 @@
             </p>
             <div class="contact-list">
                 <!-- Email -->
-                <a href="mailto:adw-studio@qq.com" class="contact-item" style="transition-delay: 0.1s;">
+                <a href="mailto:andyyanqiwang@163.com" class="contact-item" style="transition-delay: 0.1s;">
                     <div class="contact-item-icon">✉️</div>
                     <div class="contact-item-info">
                         <span class="contact-item-label">Email</span>
-                        <span class="contact-item-value">adw-studio@qq.com</span>
+                        <span class="contact-item-value">andyyanqiwang@163.com</span>
                     </div>
                 </a>
                 <!-- Phone -->
@@ -1984,6 +2050,7 @@
                 'nav-about': '关于',
                 'nav-skills': '技能',
                 'nav-projects': '项目',
+                'nav-hobbies': '爱好',
                 'nav-contact': '联系',
                 // Hero
                 'hero-title': '你好，我是',
@@ -1997,10 +2064,10 @@
                 'about-desc': '',
                 'about-text1': '2024年毕业于安徽财经大学信息管理与信息系统专业，全日制本科。通过多层选拔进入银联，担任系统运维工程师（DevOps & AI Infra），主要负责系统开发（Gin + Django）、AI Infra（VLLM）模型选型与部署调优，以及公司AI智能体研发（FastAPI + LangChain + LangGraph + React）。',
                 'about-text2': '在校期间获得省校级奖项10余项，奖学金10余次，累计志愿服务216小时。',
-                'about-stat1-label': '奖项',
+                'about-stat1-label': '各类综合奖项',
                 'about-stat2-label': '奖学金',
                 'about-stat3-label': '志愿服务',
-                'about-stat4-label': '三好学生',
+                'about-stat4-label': '三好学生及国家级省级奖',
                 // Timeline
                 'timeline-label': '/ 工作经历',
                 'timeline-title': '成长轨迹',
@@ -2013,7 +2080,7 @@
                 'tl2-desc': '负责NLP模块语料数据预处理（Pandas, NumPy），特征工程及数据可视化报告（Matplotlib, Seaborn）',
                 'tl3-title': '信息管理与信息系统 本科',
                 'tl3-sub': '安徽财经大学 · 全日制 · Anhui, China',
-                'tl3-desc': '省校级奖项10余项，奖学金10余次，累计志愿服务216小时，三好学生3次',
+                'tl3-desc': '国家级省级奖项多项，省校级奖项10余项，奖学金10余次，累计志愿服务216小时',
                 // Skills
                 'skills-label': '/ 技能栈',
                 'skills-title': '工具箱',
@@ -2027,7 +2094,7 @@
                 'skill4-title': '数据库',
                 'skill4-desc': 'PostgreSQL · MongoDB · MySQL · Milvus',
                 'skill5-title': '云与容器',
-                'skill5-desc': 'Docker · K8s · 腾讯云 · 阿里云',
+                'skill5-desc': 'Docker · 腾讯云 · 阿里云',
                 'skill6-title': 'AI & ML',
                 'skill6-desc': 'LangChain · AgentScope · React · LLM · RAG · 逻辑回归 · 决策树 · XGBoost · LightGBM · SVM',
                 'skill7-title': 'Python SDK',
@@ -2039,7 +2106,7 @@
                 'projects-title': '个人开源项目',
                 'projects-desc': '热爱计算机的我也会利用课余时间进行个人项目的开发',
                 'project1-title': 'Build a Product Agent',
-                'project1-desc': '基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，项目约60 stars',
+                'project1-desc': '基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，已超过100+ stars',
                 'project2-title': 'LLMPIC Python SDK',
                 'project2-desc': '解决公司数据中台绘图无法调用Agent的问题，封装Agent SDK，一句话就能出统计图',
                 'project3-title': '敬请期待',
@@ -2054,6 +2121,16 @@
                 'contact-desc': '有项目想聊？有想法碰撞？我在这里。',
                 'contact-xhs-label': '小红书',
                 'contact-xhs-value': '@ADW-19',
+                // Hobbies
+                'hobbies-label': '/ 生活',
+                'hobbies-title': '业余爱好与生活',
+                'hobbies-desc': '代码之外的我。',
+                'hobby1-title': '羽毛球',
+                'hobby1-desc': '前职业青训球员，出自湖南省省队，主攻男双，2025年入围银联杯决赛',
+                'hobby2-title': '摄影 & Vlog',
+                'hobby2-desc': '业余摄影师。大学期间拍摄多部微纪录片与微电影，获校级电影节第一名。',
+                'hobby3-title': '足球',
+                'hobby3-desc': '业余足球运动员，司职右边后卫，大学四年担任院队队长',
                 // Footer
                 'footer-text': 'Designed with ADW-19 <span class="accent-text">♥</span> &nbsp;|&nbsp; Powered by <span class="accent-text">ADW-19</span> &nbsp;|&nbsp; &copy; 2026 Andy Yanqi Wang',
                 // Page title
@@ -2069,10 +2146,11 @@
                 'nav-about': 'About',
                 'nav-skills': 'Skills',
                 'nav-projects': 'Projects',
+                'nav-hobbies': 'Hobbies',
                 'nav-contact': 'Contact',
                 // Hero
                 'hero-title': 'Hi, I\'m',
-                'hero-subtitle': 'Focus: Systems Engineering / AI Agents / Machine & Deep Learning.<br>Selected through multiple rounds to join UnionPay (银联) as Systems Engineer (DevOps & AI Infra)',
+                'hero-subtitle': 'Focus: Systems Engineering / AI Agents / Machine & Deep Learning.<br>Selected through multiple rounds to join UnionPay (银联) as Systems Operations Engineer (DevOps & AI Infra)',
                 'hero-btn-works': 'View Works',
                 'hero-btn-contact': 'Contact Me',
                 'hero-btn-resume': 'Resume',
@@ -2080,17 +2158,17 @@
                 'about-label': '/ About',
                 'about-title': 'Basic Info',
                 'about-desc': '',
-                'about-text1': 'Graduated in 2024 from Anhui University of Finance and Economics, B.S. in Information Management and Information Systems. Selected through multiple rounds to join UnionPay as a Systems Engineer (DevOps & AI Infra), responsible for system development (Gin + Django), AI Infra (VLLM) model selection & deployment optimization, and AI agent development (FastAPI + LangChain + LangGraph + React).',
+                'about-text1': 'Graduated in 2024 from Anhui University of Finance and Economics, B.S. in Information Management and Information Systems. Selected through multiple rounds to join UnionPay as a Systems Operations Engineer (DevOps & AI Infra), responsible for system development (Gin + Django), AI Infra (VLLM) model selection & deployment optimization, and AI agent development (FastAPI + LangChain + LangGraph + React).',
                 'about-text2': 'Received 10+ provincial and university-level awards, 10+ scholarships, and accumulated 216 hours of volunteer service during college.',
-                'about-stat1-label': 'Awards',
+                'about-stat1-label': 'Comprehensive Awards',
                 'about-stat2-label': 'Scholarships',
                 'about-stat3-label': 'Volunteer Hrs',
-                'about-stat4-label': 'Honors',
+                'about-stat4-label': 'Merit Student & National/Provincial Awards',
                 // Timeline
                 'timeline-label': '/ Experience',
                 'timeline-title': 'Career Path',
                 'tl-date-now': 'Present',
-                'tl1-title': 'Systems Engineer (DevOps & AI Infra)',
+                'tl1-title': 'Systems Operations Engineer (DevOps & AI Infra)',
                 'tl1-sub': 'UnionPay · Full-time · Shanghai, China',
                 'tl1-desc': 'System development (Gin + Django), AI Infra (VLLM) model selection & deployment, AI agent development (FastAPI + LangChain + LangGraph + React)',
                 'tl2-title': 'AI Resource Engineer (Intern)--NLP',
@@ -2098,7 +2176,7 @@
                 'tl2-desc': 'NLP corpus data preprocessing (Pandas, NumPy), feature engineering & data visualization reports (Matplotlib, Seaborn)',
                 'tl3-title': 'B.S. Information Management & Systems',
                 'tl3-sub': 'Anhui University of Finance & Economics · Anhui, China',
-                'tl3-desc': '10+ awards, 10+ scholarships, 216 hrs volunteer service, 3× honors student',
+                'tl3-desc': 'Multiple national & provincial awards, 10+ school honors, 10+ scholarships, 216 hrs volunteer service',
                 // Skills
                 'skills-label': '/ Skills',
                 'skills-title': 'Toolbox',
@@ -2112,7 +2190,7 @@
                 'skill4-title': 'Databases',
                 'skill4-desc': 'PostgreSQL · MongoDB · MySQL · Milvus',
                 'skill5-title': 'Cloud & Containers',
-                'skill5-desc': 'Docker · K8s · Tencent Cloud · Alibaba Cloud',
+                'skill5-desc': 'Docker · Tencent Cloud · Alibaba Cloud',
                 'skill6-title': 'AI & ML',
                 'skill6-desc': 'LangChain · AgentScope · React · LLM · RAG · Logistic Regression · Decision Tree · XGBoost · LightGBM · SVM',
                 'skill7-title': 'Python SDK',
@@ -2124,7 +2202,7 @@
                 'projects-title': 'Open Source Projects',
                 'projects-desc': 'Passionate about computers, I spend my free time building personal projects.',
                 'project1-title': 'Build a Product Agent',
-                'project1-desc': 'A production-grade AI Agent development handbook based on my experience, now open-source on GitHub with ~60 stars',
+                'project1-desc': 'A production-grade AI Agent development handbook based on my experience, now open-source on GitHub with 100+ stars',
                 'project2-title': 'LLMPIC Python SDK',
                 'project2-desc': 'Encapsulated Agent SDK to solve the issue of data platform charting unable to invoke AI agents — one sentence to generate statistical charts',
                 'project3-title': 'Coming Soon',
@@ -2139,6 +2217,16 @@
                 'contact-desc': 'Have a project in mind? Ideas to share? I\'m here.',
                 'contact-xhs-label': 'REDNOTE (Xiaohongshu)',
                 'contact-xhs-value': '@ADW-19',
+                // Hobbies
+                'hobbies-label': '/ Life',
+                'hobbies-title': 'Hobbies & Life',
+                'hobbies-desc': 'Me beyond the code.',
+                'hobby1-title': 'Badminton',
+                'hobby1-desc': 'Former professional youth-training player from the Hunan Provincial Team; men\'s doubles specialist and 2025 UnionPay Cup finalist',
+                'hobby2-title': 'Photography & Vlogging',
+                'hobby2-desc': 'Amateur photographer. Created multiple micro-documentaries and short films in college, winning first prize at the school film festival.',
+                'hobby3-title': 'Football',
+                'hobby3-desc': 'Amateur footballer playing right-back; captained my college team for four years',
                 // Footer
                 'footer-text': 'Designed with ADW-19 <span class="accent-text">♥</span> &nbsp;|&nbsp; Powered by <span class="accent-text">ADW-19</span> &nbsp;|&nbsp; &copy; 2026 Andy Yanqi Wang',
                 // Page title
@@ -2713,17 +2801,17 @@
                     '2024年毕业于安徽财经大学，信息管理与信息系统专业。',
                     '通过多层选拔进入银联，担任系统运维工程师，负责 DevOps 与 AI Infra 工作。',
                     '曾在科大讯飞实习，担任 AI 资源工程师，专注于 NLP 方向。',
-                    '我的技术栈涵盖 Python、Go、Gin、FastAPI、LangChain 和 Kubernetes。',
-                    '开源项目 Build a Product Agent 已获得约 60 个 GitHub stars。',
+                    '我的技术栈涵盖 Python、Go、Gin、FastAPI 和 LangChain。',
+                    '开源项目 Build a Product Agent 已超过 100+ GitHub stars。',
                     '期待与你交流合作！'
                 ],
                 en: [
                     'Hi, I am Andy Yanqi Wang, also known as ADW-19.',
                     'I graduated in 2024 from Anhui University of Finance and Economics.',
-                    'I joined UnionPay through competitive selection as a Systems Engineer in DevOps and AI Infra.',
+                    'I joined UnionPay through competitive selection as a Systems Operations Engineer in DevOps and AI Infra.',
                     'I interned at iFLYTEK as an AI Resource Engineer focusing on NLP.',
-                    'My tech stack includes Python, Go, Gin, FastAPI, LangChain, and Kubernetes.',
-                    'My open-source project Build a Product Agent has earned around 60 GitHub stars.',
+                    'My tech stack includes Python, Go, Gin, FastAPI, and LangChain.',
+                    'My open-source project Build a Product Agent has earned 100+ GitHub stars.',
                     'Looking forward to connecting with you!'
                 ]
             };
