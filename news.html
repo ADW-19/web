@@ -100,6 +100,45 @@
             font-weight: 600;
             color: var(--accent-light);
         }
+        .news-search { margin-bottom: 24px; }
+        .news-search input {
+            width: 100%;
+            padding: 12px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+        .news-search input:focus { border-color: var(--accent); }
+        .news-pager {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 28px;
+        }
+        .news-pager button {
+            padding: 8px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            transition: all 0.15s ease;
+        }
+        .news-pager button:hover:not(:disabled) { border-color: var(--accent); color: var(--text-primary); }
+        .news-pager button:disabled { opacity: 0.35; cursor: default; }
+        .news-pager span {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
         .status {
             text-align: center;
             color: var(--text-muted);
@@ -120,7 +159,13 @@
         <a href="index.html" class="back-link">← <span id="backText">返回主页</span></a>
         <div class="section-label" id="label">/ 官方新闻</div>
         <h1 id="title">全部动态</h1>
+        <div class="news-search"><input id="searchInput" type="search"></div>
         <div id="newsList"></div>
+        <div class="news-pager" id="pager" style="display:none;">
+            <button id="prevBtn"></button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn"></button>
+        </div>
     </div>
 
     <script src="news-data.js"></script>
@@ -135,14 +180,46 @@
         document.getElementById('title').textContent = zh ? '全部动态' : 'All Updates';
 
         const readMoreText = zh ? '阅读全文 →' : 'Read more →';
-        document.getElementById('newsList').innerHTML = NEWS_DATA.map(m => `
-            <a class="news-item" href="news-article.html?f=${encodeURIComponent(m.filename)}">
-                <div class="news-date">${m.date}</div>
-                <div class="news-title">${m[lang].title}</div>
-                <div class="news-desc">${m[lang].excerpt}…</div>
-                <span class="read-more">${readMoreText}</span>
-            </a>
-        `).join('');
+        document.getElementById('searchInput').placeholder = zh ? '搜索动态…' : 'Search news…';
+        document.getElementById('prevBtn').textContent = zh ? '← 上一页' : '← Prev';
+        document.getElementById('nextBtn').textContent = zh ? '下一页 →' : 'Next →';
+
+        // ===== 搜索 + 分页 =====
+        const PAGE_SIZE = 5;
+        let page = 1;
+        const input = document.getElementById('searchInput');
+        const texts = NEWS_DATA.map(m => ({
+            m,
+            hay: (m[lang].title + ' ' + m[lang].excerpt + ' ' + m[lang].html.replace(/<[^>]+>/g, ' ')).toLowerCase()
+        }));
+
+        function render() {
+            const q = input.value.trim().toLowerCase();
+            const hits = texts.filter(t => !q || t.hay.includes(q)).map(t => t.m);
+            const pages = Math.max(1, Math.ceil(hits.length / PAGE_SIZE));
+            if (page > pages) page = pages;
+            const slice = hits.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+            document.getElementById('newsList').innerHTML = slice.length ? slice.map(m => `
+                <a class="news-item" href="news-article.html?f=${encodeURIComponent(m.filename)}">
+                    <div class="news-date">${m.date}</div>
+                    <div class="news-title">${m[lang].title}</div>
+                    <div class="news-desc">${m[lang].excerpt}…</div>
+                    <span class="read-more">${readMoreText}</span>
+                </a>
+            `).join('') : `<div class="status">${zh ? '没有找到相关动态' : 'No matching updates'}</div>`;
+
+            const pager = document.getElementById('pager');
+            pager.style.display = pages > 1 ? 'flex' : 'none';
+            document.getElementById('pageInfo').textContent = `${page} / ${pages}`;
+            document.getElementById('prevBtn').disabled = page <= 1;
+            document.getElementById('nextBtn').disabled = page >= pages;
+        }
+
+        input.addEventListener('input', () => { page = 1; render(); });
+        document.getElementById('prevBtn').addEventListener('click', () => { page--; render(); });
+        document.getElementById('nextBtn').addEventListener('click', () => { page++; render(); });
+        render();
     </script>
 </body>
 </html>
