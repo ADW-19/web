@@ -643,6 +643,14 @@
             box-shadow: 0 6px 24px var(--accent-glow);
         }
 
+        .btn svg { flex-shrink: 0; }
+
+        .btn .btn-sub {
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.85;
+        }
+
         .btn-outline {
             background: transparent;
             color: var(--text-primary);
@@ -1069,7 +1077,7 @@
         .project-hint {
             position: absolute;
             top: 10px;
-            right: 10px;
+            left: 10px;
             z-index: 2;
             padding: 4px 10px;
             border-radius: 100px;
@@ -1084,6 +1092,38 @@
             pointer-events: none;
         }
 
+        .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: var(--gradient-accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px var(--accent-glow);
+        }
+
+        .project-stars {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: var(--gradient-accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 2px 10px var(--accent-glow);
+        }
+
         .project-card:hover .project-hint {
             opacity: 1;
             transform: translateY(0);
@@ -1091,6 +1131,14 @@
 
         .project-info {
             padding: 20px 24px;
+        }
+
+        .project-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
         }
 
         .project-info h3 {
@@ -1721,7 +1769,11 @@
                     <span data-i18n="hero-subtitle">方向：系统工程 / AI智能体 / 机器与深度学习。<br>Andy Yanqi Wang 官方网站 —— 动态、项目与联系方式。</span>
                 </p>
                 <div class="hero-actions animate-in delay-3">
-                    <a href="#projects" class="btn btn-primary" data-i18n="hero-btn-works">查看作品</a>
+                    <a href="#projects" class="btn btn-primary">
+                        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+                        <span data-i18n="hero-btn-works">查看GitHub开源项目</span>
+                        <span class="btn-sub" data-i18n="hero-btn-works-sub">（Star 100+ 项目）</span>
+                    </a>
                     <a href="#contact" class="btn btn-outline">
                         <span>💬</span>
                         <span data-i18n="hero-btn-contact">联系我</span>
@@ -1901,11 +1953,14 @@
                 <div class="project-card" onclick="window.open('https://github.com/ADW-19/build_a_product_agent','_blank')" style="cursor:pointer;">
                     <div class="project-preview">
                         <img src="project/build_a_product_agent.jpg" alt="Build a Product Agent" style="width:100%;height:100%;object-fit:cover;">
+                        <div class="project-badge" data-i18n="badge-pin">置顶</div>
+                        <div class="project-stars">⭐ 100+</div>
                         <div class="project-hint" data-i18n="project-hint-github">🔗 点击跳转 GitHub</div>
                     </div>
                     <div class="project-info">
+                        <div class="project-date">2026-05-22</div>
                         <h3 data-i18n="project1-title">Build a Product Agent</h3>
-                        <p data-i18n="project1-desc">基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，已超过100+ stars</p>
+                        <p data-i18n="project1-desc">基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，已超过<b>100+ stars</b></p>
                         <div class="project-tags">
                             <span class="tag">LangChain</span>
                             <span class="tag">FastAPI</span>
@@ -1916,12 +1971,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="project-card" onclick="window.open('https://github.com/ADW-19/build_a_product_agent_skill','_blank')" style="cursor:pointer;">
+                    <div class="project-preview" style="background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);">
+                        <img src="project/build_a_product_agent_skill.png" alt="Build a Product Agent Skill" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                        <div class="project-badge" data-i18n="badge-new">最新</div>
+                        <div class="project-hint" data-i18n="project-hint-github">🔗 点击跳转 GitHub</div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-date">2026-08-30</div>
+                        <h3 data-i18n="project3-title">Build a Product Agent Skill</h3>
+                        <p data-i18n="project3-desc">把《构建生产级 AI Agent》手册的生产级规范提炼成 Claude Code 技能，dev / review / docs 三种模式，让 AI 按手册标准写 Agent 后端</p>
+                        <div class="project-tags">
+                            <span class="tag">Claude Code</span>
+                            <span class="tag">Skill</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">LangGraph</span>
+                        </div>
+                        <div style="display:flex;gap:10px;margin-top:12px;" onclick="event.stopPropagation()">
+                            <a href="https://github.com/ADW-19/build_a_product_agent_skill" target="_blank" class="project-link-btn">🐙 GitHub</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-card" id="projectLLMPIC">
                     <div class="project-preview">
                         <img src="project/llmpic.png" alt="LLMPIC Python SDK" style="width:100%;height:100%;object-fit:cover;">
                         <div class="project-hint" data-i18n="project-hint-choose">🔗 点击选择跳转链接</div>
                     </div>
                     <div class="project-info">
+                        <div class="project-date">2026-05-17</div>
                         <h3 data-i18n="project2-title">LLMPIC Python SDK</h3>
                         <p data-i18n="project2-desc">解决公司数据中台绘图无法调用Agent的问题，封装Agent SDK，一句话就能出统计图</p>
                         <div class="project-tags">
@@ -1936,19 +2013,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" style="cursor:default;">
-                    <div class="project-preview" style="background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%); display:flex; align-items:center; justify-content:center;">
-                        <span style="font-size:56px;opacity:0.4;">🚀</span>
-                    </div>
-                    <div class="project-info" style="text-align:center;">
-                        <h3 data-i18n="project3-title">敬请期待</h3>
-                        <p data-i18n="project3-desc">更多项目开发中，敬请期待...</p>
-                        <div class="project-tags" style="justify-content:center;">
-                            <span class="tag" style="background:rgba(232,69,60,0.05);">Coming Soon</span>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <a href="projects.html" class="news-more" data-i18n="projects-more">查看全部项目 →</a>
         </div>
     </section>
 
@@ -2136,7 +2202,10 @@
                 // Hero
                 'hero-title': '你好，我是',
                 'hero-subtitle': '方向：系统工程 / AI智能体 / 机器与深度学习。<br>Andy Yanqi Wang 官方网站 —— 动态、项目与联系方式。',
-                'hero-btn-works': '查看作品',
+                'hero-btn-works': '查看GitHub开源项目',
+                'hero-btn-works-sub': '（Star 100+ 项目）',
+                'badge-pin': '置顶',
+                'badge-new': '最新',
                 'hero-btn-contact': '联系我',
                 'hero-btn-resume': '下载简历',
                 // About
@@ -2190,12 +2259,13 @@
                 'projects-label': '/ 精选作品',
                 'projects-title': '个人开源项目',
                 'projects-desc': '热爱计算机的我也会利用课余时间进行个人项目的开发',
+                'projects-more': '查看全部项目 →',
                 'project1-title': 'Build a Product Agent',
-                'project1-desc': '基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，已超过100+ stars',
+                'project1-desc': '基于我的开发经验汇总的生产级AI Agent开发手册，现已在GitHub上开源，已超过<b>100+ stars</b>',
                 'project2-title': 'LLMPIC Python SDK',
                 'project2-desc': '解决公司数据中台绘图无法调用Agent的问题，封装Agent SDK，一句话就能出统计图',
-                'project3-title': '敬请期待',
-                'project3-desc': '更多项目开发中，敬请期待...',
+                'project3-title': 'Build a Product Agent Skill',
+                'project3-desc': '把《构建生产级 AI Agent》手册的生产级规范提炼成 Claude Code 技能，dev / review / docs 三种模式，让 AI 按手册标准写 Agent 后端',
                 'project-hint-github': '🔗 点击跳转 GitHub',
                 'project-hint-choose': '🔗 点击选择跳转链接',
                 'picker-title': '点击跳转链接',
@@ -2237,7 +2307,10 @@
                 // Hero
                 'hero-title': 'Hi, I\'m',
                 'hero-subtitle': 'Focus: Systems Engineering / AI Agents / Machine & Deep Learning.<br>Official website of Andy Yanqi Wang — news, projects, and contact.',
-                'hero-btn-works': 'View Works',
+                'hero-btn-works': 'View GitHub Projects',
+                'hero-btn-works-sub': '(Star 100+ project)',
+                'badge-pin': 'PINNED',
+                'badge-new': 'NEW',
                 'hero-btn-contact': 'Contact Me',
                 'hero-btn-resume': 'Resume',
                 // About
@@ -2291,12 +2364,13 @@
                 'projects-label': '/ Featured Works',
                 'projects-title': 'Open Source Projects',
                 'projects-desc': 'Passionate about computers, I spend my free time building personal projects.',
+                'projects-more': 'View all projects →',
                 'project1-title': 'Build a Product Agent',
-                'project1-desc': 'A production-grade AI Agent development handbook based on my experience, now open-source on GitHub with 100+ stars',
+                'project1-desc': 'A production-grade AI Agent development handbook based on my experience, now open-source on GitHub with <b>100+ stars</b>',
                 'project2-title': 'LLMPIC Python SDK',
                 'project2-desc': 'Encapsulated Agent SDK to solve the issue of data platform charting unable to invoke AI agents — one sentence to generate statistical charts',
-                'project3-title': 'Coming Soon',
-                'project3-desc': 'More projects in development, stay tuned...',
+                'project3-title': 'Build a Product Agent Skill',
+                'project3-desc': 'Distills the production-grade conventions of the "Build a Product Agent" manual into a Claude Code skill — dev / review / docs modes, so AI writes agent backends to the manual\'s standard.',
                 'project-hint-github': '🔗 Open in GitHub',
                 'project-hint-choose': '🔗 Choose a link',
                 'picker-title': 'Open Link',

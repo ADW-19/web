@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Source Projects - Andy Yanqi Wang</title>
+    <style>
+        :root {
+            --bg-card: #13131f;
+            --bg-card-hover: #191928;
+            --text-primary: #e8e8ed;
+            --text-secondary: #c8c8d4;
+            --text-muted: #a0a0b0;
+            --accent: #e8453c;
+            --accent-light: #ff6b5f;
+            --border: #1e1e32;
+            --border-hover: #2a2a45;
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background: #06060a;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 110px 32px 80px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 36px;
+            transition: color 0.15s ease;
+        }
+        .back-link:hover { color: var(--accent-light); }
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 32px;
+        }
+        .search-box { margin-bottom: 28px; }
+        .search-box input {
+            width: 100%;
+            padding: 12px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+        .search-box input:focus { border-color: var(--accent); }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .project-preview {
+            height: 170px;
+            background: linear-gradient(145deg, #141428 0%, #181830 100%);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, #e8453c, #c0392b);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px rgba(232, 69, 60, 0.25);
+        }
+        .project-stars {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, #e8453c, #c0392b);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(232, 69, 60, 0.25);
+        }
+        .project-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .project-info {
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .project-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .project-info p {
+            font-size: 13px;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .tag {
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 500;
+            background: rgba(232, 69, 60, 0.08);
+            color: var(--accent-light);
+            font-family: var(--font-mono);
+        }
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+        .project-link-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            background: rgba(232, 69, 60, 0.08);
+        }
+        .pager {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .pager button {
+            padding: 8px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            transition: all 0.15s ease;
+        }
+        .pager button:hover:not(:disabled) { border-color: var(--accent); color: var(--text-primary); }
+        .pager button:disabled { opacity: 0.35; cursor: default; }
+        .pager span {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .status {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px 0;
+            font-size: 14px;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #08080c; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        @media (max-width: 768px) {
+            .container { padding: 90px 20px 60px; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← <span id="backText">返回主页</span></a>
+        <div class="section-label" id="label">/ Open Source</div>
+        <h1 id="title">开源项目</h1>
+        <div class="search-box"><input id="searchInput" type="search"></div>
+        <div class="projects-grid" id="projectsGrid"></div>
+        <div class="pager" id="pager" style="display:none;">
+            <button id="prevBtn"></button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn"></button>
+        </div>
+    </div>
+
+    <script src="projects-data.js"></script>
+    <script>
+        const lang = localStorage.getItem('site-lang') || 'en';
+        const zh = lang === 'zh';
+
+        document.documentElement.lang = zh ? 'zh-CN' : 'en';
+        document.title = zh ? '开源项目 - Andy Yanqi Wang' : 'Open Source Projects - Andy Yanqi Wang';
+        document.getElementById('backText').textContent = zh ? '返回主页' : 'Back to Home';
+        document.getElementById('label').textContent = zh ? '/ 开源项目' : '/ Open Source';
+        document.getElementById('title').textContent = zh ? '开源项目' : 'Open Source Projects';
+        document.getElementById('searchInput').placeholder = zh ? '搜索项目…' : 'Search projects…';
+        document.getElementById('prevBtn').textContent = zh ? '← 上一页' : '← Prev';
+        document.getElementById('nextBtn').textContent = zh ? '下一页 →' : 'Next →';
+
+        // ===== 搜索 + 分页（置顶在前，其余按日期倒序） =====
+        const PAGE_SIZE = 6;
+        let page = 1;
+        const input = document.getElementById('searchInput');
+        const sorted = PROJECTS_DATA.slice().sort((a, b) =>
+            (b.pin ? 1 : 0) - (a.pin ? 1 : 0) || (b.date || '').localeCompare(a.date || ''));
+        const texts = sorted.map(p => ({
+            p,
+            hay: (p[lang].title + ' ' + p[lang].desc + ' ' + p.tags.join(' ')).toLowerCase()
+        }));
+
+        function render() {
+            const q = input.value.trim().toLowerCase();
+            const hits = texts.filter(t => !q || t.hay.includes(q)).map(t => t.p);
+            const pages = Math.max(1, Math.ceil(hits.length / PAGE_SIZE));
+            if (page > pages) page = pages;
+            const slice = hits.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+            document.getElementById('projectsGrid').innerHTML = slice.length ? slice.map(p => `
+                <div class="project-card">
+                    <div class="project-preview">
+                        <img src="${p.img}" alt="${p[lang].title}" style="object-position:${p.imgPos || 'center'};">
+                        ${p.badge ? `<div class="project-badge">${p.badge[lang]}</div>` : ''}
+                        ${p.stars ? `<div class="project-stars">⭐ ${p.stars}</div>` : ''}
+                    </div>
+                    <div class="project-info">
+                        <div class="project-date">${p.date || ''}</div>
+                        <h3>${p[lang].title}</h3>
+                        <p>${p[lang].desc}</p>
+                        <div class="project-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                        <div class="project-links">
+                            ${p.links.map(l => `<a href="${l.url}" target="_blank" class="project-link-btn">${l.label}</a>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('') : `<div class="status">${zh ? '没有找到相关项目' : 'No matching projects'}</div>`;
+
+            const pager = document.getElementById('pager');
+            pager.style.display = pages > 1 ? 'flex' : 'none';
+            document.getElementById('pageInfo').textContent = `${page} / ${pages}`;
+            document.getElementById('prevBtn').disabled = page <= 1;
+            document.getElementById('nextBtn').disabled = page >= pages;
+        }
+
+        input.addEventListener('input', () => { page = 1; render(); });
+        document.getElementById('prevBtn').addEventListener('click', () => { page--; render(); });
+        document.getElementById('nextBtn').addEventListener('click', () => { page++; render(); });
+        render();
+    </script>
+</body>
+</html>
