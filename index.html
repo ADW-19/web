@@ -1222,6 +1222,72 @@
             font-family: var(--font-mono);
         }
 
+        /* ===== News Section ===== */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            padding: 16px 22px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition-normal);
+        }
+
+        .news-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateX(6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .news-item-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .news-item-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .news-item-badge {
+            margin-left: auto;
+            flex-shrink: 0;
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(232, 69, 60, 0.12);
+            color: var(--accent-light);
+        }
+
+        .news-more {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .news-more:hover {
+            transform: translateX(4px);
+        }
+
         /* ===== Contact Section ===== */
         .contact-list {
             display: flex;
@@ -1575,8 +1641,8 @@
         </div>
     </button>
 
-    <!-- UFO Guide -->
-    <div class="ufo-finger">
+    <!-- UFO Guide（隐藏中，需要时去掉 display:none） -->
+    <div class="ufo-finger" style="display:none;">
         <span class="ufo-finger-inner">👆</span>
         <span class="ufo-finger-text" data-i18n="ufo-hint">点击我</span>
     </div>
@@ -1626,6 +1692,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#about" class="active" data-i18n="nav-about">关于</a></li>
+                <li><a href="news.html" data-i18n="nav-news">动态</a></li>
                 <li><a href="#skills" data-i18n="nav-skills">技能</a></li>
                 <li><a href="#projects" data-i18n="nav-projects">项目</a></li>
                 <li><a href="#hobbies" data-i18n="nav-hobbies">爱好</a></li>
@@ -1645,14 +1712,13 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-avatar animate-in" id="heroAvatar">
-                    <span class="hero-avatar-placeholder">🫥</span>
-                    <!-- <img src="your-photo.jpg" alt="Avatar"> -->
+                    <img src="assets/avatar.jpg" alt="Andy Yanqi Wang">
                 </div>
                 <h1 class="animate-in delay-1">
                     <span data-i18n="hero-title">你好，我是</span><br><span class="accent">Andy Yanqi Wang</span>
                 </h1>
                 <p class="hero-subtitle animate-in delay-2">
-                    <span data-i18n="hero-subtitle">方向：系统工程 / AI智能体 / 机器与深度学习。<br>通过多层选拔进入银联，2年全职工作经验系统运维工程师（DevOps & AI Infra）</span>
+                    <span data-i18n="hero-subtitle">方向：系统工程 / AI智能体 / 机器与深度学习。<br>Andy Yanqi Wang 官方网站 —— 动态、项目与联系方式。</span>
                 </p>
                 <div class="hero-actions animate-in delay-3">
                     <a href="#projects" class="btn btn-primary" data-i18n="hero-btn-works">查看作品</a>
@@ -1669,6 +1735,16 @@
         </div>
     </section>
 
+    <!-- News Section -->
+    <section id="news">
+        <div class="container">
+            <div class="section-label" data-i18n="news-label">/ 官方新闻</div>
+            <h2 class="section-title" data-i18n="news-title">最新动态</h2>
+            <div class="news-list" id="newsList"></div>
+            <a href="news.html" class="news-more" data-i18n="news-more">查看全部动态 →</a>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about">
         <div class="container">
@@ -1677,10 +1753,13 @@
             <div class="about-grid">
                 <div class="about-text">
                     <p data-i18n="about-text1">
-                        2024年毕业于安徽财经大学信息管理与信息系统专业，全日制本科。通过多层选拔进入银联，担任系统运维工程师（DevOps & AI Infra），主要负责系统开发（Gin + Django）、AI Infra（VLLM）模型选型与部署调优，以及公司AI智能体研发（FastAPI + LangChain + LangGraph + React）。
+                        2024年毕业于安徽财经大学信息管理与信息系统专业，全日制本科。现银联IT工程师，Base上海浦东新区，主要负责公司AI与智能化建设工作，所负责业务已服务至银联金融智能风控、银行卡等业务。
                     </p>
                     <p data-i18n="about-text2">
                         在校期间获得省校级奖项10余项，奖学金10余次，累计志愿服务216小时。
+                    </p>
+                    <p data-i18n="about-text3">
+                        前职业梯队羽毛球运动员。
                     </p>
                 </div>
                 <div class="about-stats">
@@ -1736,7 +1815,7 @@
                             </div>
                         </div>
                         <div class="timeline-sub" data-i18n="tl2-sub">科大讯飞 · 实习 · Anhui, China</div>
-                        <div class="timeline-desc" data-i18n="tl2-desc">负责NLP模块语料数据预处理（Pandas, NumPy），特征工程及数据可视化报告（Matplotlib, Seaborn）</div>
+                        <div class="timeline-desc" data-i18n="tl2-desc">负责NLP模块语料数据预处理、特征工程及数据可视化报告</div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1987,6 +2066,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="news-data.js"></script>
     <script>
         // ===== Favicon =====
         (function() {
@@ -2048,22 +2128,27 @@
             zh: {
                 // Nav
                 'nav-about': '关于',
+                'nav-news': '动态',
                 'nav-skills': '技能',
                 'nav-projects': '项目',
                 'nav-hobbies': '爱好',
                 'nav-contact': '联系',
                 // Hero
                 'hero-title': '你好，我是',
-                'hero-subtitle': '方向：系统工程 / AI智能体 / 机器与深度学习。<br>通过多层选拔进入银联，2年全职工作经验系统运维工程师（DevOps & AI Infra）',
+                'hero-subtitle': '方向：系统工程 / AI智能体 / 机器与深度学习。<br>Andy Yanqi Wang 官方网站 —— 动态、项目与联系方式。',
                 'hero-btn-works': '查看作品',
                 'hero-btn-contact': '联系我',
                 'hero-btn-resume': '下载简历',
                 // About
+                'news-label': '/ 官方新闻',
+                'news-title': '最新动态',
+                'news-more': '查看全部动态 →',
                 'about-label': '/ 关于我',
                 'about-title': '基本信息',
                 'about-desc': '',
-                'about-text1': '2024年毕业于安徽财经大学信息管理与信息系统专业，全日制本科。通过多层选拔进入银联，担任系统运维工程师（DevOps & AI Infra），主要负责系统开发（Gin + Django）、AI Infra（VLLM）模型选型与部署调优，以及公司AI智能体研发（FastAPI + LangChain + LangGraph + React）。',
+                'about-text1': '2024年毕业于安徽财经大学信息管理与信息系统专业，全日制本科。现银联IT工程师，Base上海浦东新区，主要负责公司AI与智能化建设工作，所负责业务已服务至银联金融智能风控、银行卡等业务。',
                 'about-text2': '在校期间获得省校级奖项10余项，奖学金10余次，累计志愿服务216小时。',
+                'about-text3': '前职业梯队羽毛球运动员。',
                 'about-stat1-label': '各类综合奖项',
                 'about-stat2-label': '奖学金',
                 'about-stat3-label': '志愿服务',
@@ -2077,7 +2162,7 @@
                 'tl1-desc': '负责系统开发（Gin + Django）、AI Infra（VLLM）模型选型与部署调优、AI智能体研发（FastAPI + LangChain + LangGraph + React）',
                 'tl2-title': 'AI资源工程师（实习）--NLP方向',
                 'tl2-sub': '科大讯飞 · 实习 · Anhui, China',
-                'tl2-desc': '负责NLP模块语料数据预处理（Pandas, NumPy），特征工程及数据可视化报告（Matplotlib, Seaborn）',
+                'tl2-desc': '负责NLP模块语料数据预处理、特征工程及数据可视化报告',
                 'tl3-title': '信息管理与信息系统 本科',
                 'tl3-sub': '安徽财经大学 · 全日制 · Anhui, China',
                 'tl3-desc': '国家级省级奖项多项，省校级奖项10余项，奖学金10余次，累计志愿服务216小时',
@@ -2144,22 +2229,27 @@
             en: {
                 // Nav
                 'nav-about': 'About',
+                'nav-news': 'News',
                 'nav-skills': 'Skills',
                 'nav-projects': 'Projects',
                 'nav-hobbies': 'Hobbies',
                 'nav-contact': 'Contact',
                 // Hero
                 'hero-title': 'Hi, I\'m',
-                'hero-subtitle': 'Focus: Systems Engineering / AI Agents / Machine & Deep Learning.<br>Selected through multiple rounds to join UnionPay (银联) as Systems Operations Engineer (DevOps & AI Infra)',
+                'hero-subtitle': 'Focus: Systems Engineering / AI Agents / Machine & Deep Learning.<br>Official website of Andy Yanqi Wang — news, projects, and contact.',
                 'hero-btn-works': 'View Works',
                 'hero-btn-contact': 'Contact Me',
                 'hero-btn-resume': 'Resume',
                 // About
+                'news-label': '/ Official News',
+                'news-title': 'Latest Updates',
+                'news-more': 'View all updates →',
                 'about-label': '/ About',
                 'about-title': 'Basic Info',
                 'about-desc': '',
-                'about-text1': 'Graduated in 2024 from Anhui University of Finance and Economics, B.S. in Information Management and Information Systems. Selected through multiple rounds to join UnionPay as a Systems Operations Engineer (DevOps & AI Infra), responsible for system development (Gin + Django), AI Infra (VLLM) model selection & deployment optimization, and AI agent development (FastAPI + LangChain + LangGraph + React).',
+                'about-text1': 'Graduated in 2024 from Anhui University of Finance and Economics with a bachelor\'s degree in Information Management and Information Systems. Now an IT engineer at UnionPay, based in Pudong New Area, Shanghai, focusing on the company\'s AI and intelligentization initiatives — services already supporting UnionPay\'s intelligent financial risk control, bank card businesses, and more.',
                 'about-text2': 'Received 10+ provincial and university-level awards, 10+ scholarships, and accumulated 216 hours of volunteer service during college.',
+                'about-text3': 'Former professional-tier badminton player.',
                 'about-stat1-label': 'Comprehensive Awards',
                 'about-stat2-label': 'Scholarships',
                 'about-stat3-label': 'Volunteer Hrs',
@@ -2173,7 +2263,7 @@
                 'tl1-desc': 'System development (Gin + Django), AI Infra (VLLM) model selection & deployment, AI agent development (FastAPI + LangChain + LangGraph + React)',
                 'tl2-title': 'AI Resource Engineer (Intern)--NLP',
                 'tl2-sub': 'iFLYTEK · Internship · Anhui, China',
-                'tl2-desc': 'NLP corpus data preprocessing (Pandas, NumPy), feature engineering & data visualization reports (Matplotlib, Seaborn)',
+                'tl2-desc': 'NLP corpus data preprocessing, feature engineering & data visualization reports',
                 'tl3-title': 'B.S. Information Management & Systems',
                 'tl3-sub': 'Anhui University of Finance & Economics · Anhui, China',
                 'tl3-desc': 'Multiple national & provincial awards, 10+ school honors, 10+ scholarships, 216 hrs volunteer service',
@@ -2239,13 +2329,8 @@
             }
         };
 
-        function detectSystemLang() {
-            const lang = navigator.language || navigator.userLanguage || 'zh';
-            return lang.toLowerCase().startsWith('zh') ? 'zh' : 'en';
-        }
-
         function getLang() {
-            return localStorage.getItem('site-lang') || detectSystemLang();
+            return localStorage.getItem('site-lang') || 'en';
         }
 
         function updateLangSlider(lang) {
@@ -2282,6 +2367,7 @@
                 }
             });
             updateLangSlider(lang);
+            if (typeof renderNews === 'function') renderNews();
             document.querySelectorAll('.lang-option').forEach(opt => {
                 opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
             });
@@ -2500,6 +2586,21 @@
                 link.addEventListener('click', () => overlay.classList.remove('open'));
             });
         })();
+
+        // ===== News Section (latest 3 from news-data.js，由 build-news.js 生成) =====
+        function renderNews() {
+            const list = document.getElementById('newsList');
+            if (!list || typeof NEWS_DATA === 'undefined') return;
+            const lang = getLang();
+            list.innerHTML = NEWS_DATA.slice(0, 3).map((m, i) => `
+                <a class="news-item" href="news-article.html?f=${encodeURIComponent(m.filename)}">
+                    <span class="news-item-date">${m.date}</span>
+                    <span class="news-item-title">${m[lang].title}</span>
+                    ${i === 0 ? `<span class="news-item-badge">${lang === 'zh' ? '最新' : 'NEW'}</span>` : ''}
+                </a>
+            `).join('');
+        }
+        renderNews();
 
         // ===== Earth Planet Canvas =====
         (function() {

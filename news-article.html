@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告详情 - Andy Yanqi Wang</title>
+    <style>
+        :root {
+            --bg-card: #13131f;
+            --text-primary: #e8e8ed;
+            --text-secondary: #c8c8d4;
+            --text-muted: #a0a0b0;
+            --accent: #e8453c;
+            --accent-light: #ff6b5f;
+            --border: #1e1e32;
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --radius-md: 12px;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background: #06060a;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 110px 32px 80px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 36px;
+            transition: color 0.15s ease;
+        }
+        .back-link:hover { color: var(--accent-light); }
+        .article-header { margin-bottom: 32px; }
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+        .article-date {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        h1.article-title {
+            font-size: clamp(26px, 4vw, 38px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.3;
+        }
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 36px 40px;
+        }
+        /* ===== 文章排版 ===== */
+        .article-body { font-size: 16px; color: var(--text-secondary); line-height: 1.9; }
+        .article-body p { margin-bottom: 18px; }
+        .article-body h2, .article-body h3 {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 32px 0 14px;
+            padding-left: 12px;
+            border-left: 3px solid var(--accent);
+        }
+        .article-body h2 { font-size: 21px; }
+        .article-body h3 { font-size: 18px; }
+        .article-body img, .article-body video {
+            display: block;
+            max-width: 100%;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: #000;
+            margin: 8px auto;
+        }
+        .article-body em { display: block; text-align: center; font-size: 13px; color: var(--text-muted); font-style: normal; margin-bottom: 18px; }
+        .article-body pre {
+            background: #0a0a12;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent-light);
+            overflow-x: auto;
+            margin-bottom: 18px;
+        }
+        .article-body code {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent-light);
+            background: rgba(232, 69, 60, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .article-body pre code { background: none; padding: 0; }
+        .article-body a { color: var(--accent-light); }
+        .article-body blockquote {
+            border-left: 3px solid var(--border);
+            padding-left: 16px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 18px; }
+        .article-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .article-nav a {
+            flex: 1;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .article-nav a:hover { border-color: var(--accent); color: var(--text-primary); }
+        .article-nav .next { text-align: right; }
+        .status {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .status a { color: var(--accent-light); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #08080c; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        @media (max-width: 768px) {
+            .container { padding: 90px 20px 60px; }
+            .article-card { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="news.html" class="back-link">← <span id="backText">返回动态列表</span></a>
+        <div id="articleWrap" style="display:none;">
+            <!-- 正文由 news-data.js 渲染 -->
+            <div class="article-header">
+                <div class="section-label" id="label">/ 官方新闻</div>
+                <div class="article-date" id="articleDate"></div>
+                <h1 class="article-title" id="articleTitle"></h1>
+            </div>
+            <div class="article-card">
+                <div class="article-body" id="articleBody"></div>
+            </div>
+            <div class="article-nav" id="articleNav"></div>
+        </div>
+        <div class="status" id="status">加载中…</div>
+    </div>
+
+    <script src="news-data.js"></script>
+    <script>
+        const lang = localStorage.getItem('site-lang') || 'en';
+        const zh = lang === 'zh';
+        const T = zh
+            ? { label: '/ 官方新闻', back: '返回动态列表', prev: '上一篇', next: '下一篇',
+                missing: '未找到该公告', backList: '返回动态列表' }
+            : { label: '/ Official News', back: 'Back to News', prev: 'Previous', next: 'Next',
+                missing: 'Announcement not found', backList: 'Back to News' };
+
+        document.documentElement.lang = zh ? 'zh-CN' : 'en';
+        document.getElementById('backText').textContent = T.back;
+        document.getElementById('label').textContent = T.label;
+
+        const params = new URLSearchParams(location.search);
+        let idx = params.get('f')
+            ? NEWS_DATA.findIndex(m => m.filename === params.get('f'))
+            : parseInt(params.get('id'), 10);
+        const m = NEWS_DATA[idx];
+
+        if (!m) {
+            document.getElementById('articleWrap').style.display = 'none';
+            document.getElementById('status').innerHTML =
+                `${T.missing} · <a href="news.html">${T.backList}</a>`;
+        } else {
+            const L = m[lang] || m.zh;
+            document.title = L.title + ' - Andy Yanqi Wang';
+            document.getElementById('articleDate').textContent = m.date;
+            document.getElementById('articleTitle').textContent = L.title;
+            document.getElementById('articleBody').innerHTML = L.html;
+            document.getElementById('articleWrap').style.display = 'block';
+            document.getElementById('status').style.display = 'none';
+
+            // 上一篇 / 下一篇（数组中 idx-1 = 更新，idx+1 = 更早）
+            const nav = document.getElementById('articleNav');
+            const p = NEWS_DATA[idx - 1], n = NEWS_DATA[idx + 1];
+            nav.innerHTML =
+                (p ? `<a class="prev" href="news-article.html?f=${encodeURIComponent(p.filename)}">${T.prev}<br><b>${p[lang].title}</b></a>` : '<span style="flex:1"></span>') +
+                (n ? `<a class="next" href="news-article.html?f=${encodeURIComponent(n.filename)}">${T.next}<br><b>${n[lang].title}</b></a>` : '<span style="flex:1"></span>');
+        }
+    </script>
+</body>
+</html>

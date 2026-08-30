@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>官方动态 - Andy Yanqi Wang</title>
+    <style>
+        :root {
+            --bg-card: #13131f;
+            --bg-card-hover: #191928;
+            --text-primary: #e8e8ed;
+            --text-secondary: #c8c8d4;
+            --text-muted: #a0a0b0;
+            --accent: #e8453c;
+            --accent-light: #ff6b5f;
+            --border: #1e1e32;
+            --border-hover: #2a2a45;
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --radius-md: 12px;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background: #06060a;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 110px 32px 80px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 36px;
+            transition: color 0.15s ease;
+        }
+        .back-link:hover { color: var(--accent-light); }
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+        }
+        .news-item {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+        }
+        .news-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateX(6px);
+            box-shadow: var(--shadow-md);
+        }
+        .news-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .news-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .news-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .news-item .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+        .status {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px 0;
+            font-size: 14px;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #08080c; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        @media (max-width: 768px) {
+            .container { padding: 90px 20px 60px; }
+            .news-item { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← <span id="backText">返回主页</span></a>
+        <div class="section-label" id="label">/ 官方新闻</div>
+        <h1 id="title">全部动态</h1>
+        <div id="newsList"></div>
+    </div>
+
+    <script src="news-data.js"></script>
+    <script>
+        const lang = localStorage.getItem('site-lang') || 'en';
+        const zh = lang === 'zh';
+
+        document.documentElement.lang = zh ? 'zh-CN' : 'en';
+        document.title = zh ? '官方动态 - Andy Yanqi Wang' : 'Official News - Andy Yanqi Wang';
+        document.getElementById('backText').textContent = zh ? '返回主页' : 'Back to Home';
+        document.getElementById('label').textContent = zh ? '/ 官方新闻' : '/ Official News';
+        document.getElementById('title').textContent = zh ? '全部动态' : 'All Updates';
+
+        const readMoreText = zh ? '阅读全文 →' : 'Read more →';
+        document.getElementById('newsList').innerHTML = NEWS_DATA.map(m => `
+            <a class="news-item" href="news-article.html?f=${encodeURIComponent(m.filename)}">
+                <div class="news-date">${m.date}</div>
+                <div class="news-title">${m[lang].title}</div>
+                <div class="news-desc">${m[lang].excerpt}…</div>
+                <span class="read-more">${readMoreText}</span>
+            </a>
+        `).join('');
+    </script>
+</body>
+</html>
